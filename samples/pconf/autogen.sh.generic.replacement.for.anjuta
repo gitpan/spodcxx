@@ -1,0 +1,26 @@
+#!/bin/sh
+
+srcdir=$PWD
+PCONFDIR=/home/hans/src/pconf
+PROJECT=`basename $PWD`
+
+echo "Project=$PROJECT"
+echo "Cleaning up generic anjuta project stuff"
+ls $PWD
+mv $PROJECT.prj ..
+mv $PROJECT.pws ..
+mv src ../$PROJECT.src
+rm -rf $PWD/*
+mv ../$PROJECT.prj .
+mv ../$PROJECT.pws .
+mv ../$PROJECT.src ./src
+
+echo "srcdir=$srcdir"
+echo "PCONFDIR=$PCONFDIR"
+echo "Installing pconf makefiles..."
+
+(cd $PCONFDIR;make install-project DIRECTORIES="$srcdir")
+
+echo "done."
+
+

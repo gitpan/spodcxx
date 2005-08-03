@@ -1,0 +1,43 @@
+### Extra paths etc.
+
+ifeq ("$(OS)","WIN32")
+LOCAL_CFLAGS= -Ic:/local/include
+LOCAL_LDFLAGS=-Lc:/local/lib
+LOCAL_LIBS=
+else
+LOCAL_CFLAGS=
+LOCAL_LDFLAGS=
+LOCAL_LIBS=
+endif
+
+WEB_DOC_PLACE=hnmdijkema@shell.sf.net:/home/groups/p/pc/pconf/htdocs
+WEB_INDEX=pconf.html
+POD_CSS=pconf.css
+
+SPODWIKI=/home/ep/wiki
+
+### Configuration
+
+# = 0 --> Not needed
+# = 1 --> Mandatory
+# = 2 --> Use if there, not mandatory
+# = 3 --> Check if there, don't use
+
+### Threading
+#ifeq ("$(OS)","WIN32")
+NEED_PTHREADS:=0
+#else
+#NEED_PTHREADS:=1
+#endif
+
+### utest lib
+NEED_UTEST:=0
+
+### harray
+NEED_HARRAY:=0
+
+### critsec
+NEED_CRITSEC:=0
+
+### wxWidgets
+NEED_WXWIDGETS:=0

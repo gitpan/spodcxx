@@ -1,0 +1,27 @@
+### Extra paths etc.
+
+ifeq ("$(OS)","WIN32")
+LOCAL_CFLAGS= -Id:/local/include
+LOCAL_LDFLAGS=-Ld:/local/lib
+LOCAL_LIBS=
+PREFIX=d:/devel
+else
+LOCAL_CFLAGS=-I$$HOME/local/include
+LOCAL_LDFLAGS=-L$$HOME/local/lib
+LOCAL_LIBS=
+PREFIX=$$HOME/local
+endif
+
+WEB_DOC_PLACE=hnmdijkema@shell.sf.net:/home/groups/p/pc/pconf/htdocs
+WEB_INDEX=pconf.html
+POD_CSS=pconf.css
+
+SPODWIKI=/home/ep/wiki
+
+### Configuration
+
+# = 0 --> Not needed
+# = 1 --> Mandatory
+# = 2 --> Use if there, not mandatory
+# = 3 --> Check if there, don't use
+

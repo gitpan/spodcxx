@@ -1,0 +1,219 @@
+# $Id: Makefile.in,v 1.28 2004/09/13 14:47:34 cvs Exp $
+#
+# GNU Make file for gcc 
+#
+
+cp=cp
+RM=rm -f
+rm=$(RM)
+mkdir_p=mkdir -p
+tar=tar
+cd=cd
+cat=cat
+sed=sed
+scp=scp
+grep=grep
+uname=uname
+PHP=php
+
+FILE_OS:=$(wildcard config/os.cfg)
+ifeq ("$(FILE_OS)","")
+	OS:=$(shell $(mkdir_p) config;T=`$(uname)`;echo $$T >config/os.cfg; grep MINGW config/os.cfg >config/tmp 2>&1;if [ $$? = 0 ]; then echo "WIN32" >config/os.cfg;fi;cat config/os.cfg)
+else 
+	OS:=$(shell $(cat) config/os.cfg)
+endif
+
+OS_MAK:=$(wildcard checks/make/$(OS).mak)
+ifeq ("$(OS_MAK)","")
+	OS_MAK:=$(warning "OS=$(OS), no checks/make/$(OS).mak available")
+	OS_MAK:=$(warning "Using 'gnu.mak' instead.")
+	OS_MAK:=checks/make/gnu.mak
+endif
+include $(OS_MAK)
+SO=$(SHL)
+
+OS_CONFIG:=$(wildcard checks/include/$(OS).h)
+ifeq ("$(OS_CONFIG)","")
+	OS_CONFIG:=$(warning "OS=$(OS), no checks/include/$(OS).h available")
+	OS_CONFIG:=$(warning "Using 'gnu.h' instead.")
+	OS_CONFIG:=checks/include/gnu.h
+endif
+
+PREFIX?=/usr/local
+PREFIX_BIN?=$(PREFIX)/bin
+PREFIX_DOC?=$(PREFIX)/doc
+PREFIX_LIB?=$(PREFIX)/lib
+PREFIX_INC?=$(PREFIX)/include
+PREFIX_INCLUDE:=$(PREFIX_INC)
+
+## Some standards
+
+allall: $(OS) all
+
+$(OS):
+	if [ ! -d $(OS) ]; then $(mkdir_p) $(OS); fi
+	
+### doc
+
+doc: $(DOC_SOURCES) $(OS)
+	@echo "Generating documentation"
+	-@cp pconf.css $(OS)
+	@for d in $(DOC_SOURCES) $(OS); do \
+		if [ "$$d" != "$(OS)" ]; then \
+			echo "working $$d"; \
+			bd=`basename $$d`; \
+			html="$$bd.html"; \
+			echo "$(pod2html) $(POD_EXTRA_ARGS) $$d $(pod2htmlout) $(OS)/$$html"; \
+			sed -e 's/^\[{$$//' -e 's/^}\]$$//' -e 's/@PACKAGE@/$(PACKAGE)/g' -e 's/@VERSION@/$(VERSION)/g' <$$d >$(OS)/spod_$$bd; \
+			$(pod2html) $(OS)/spod_$$bd $(pod2htmlout) $(OS)/$$html; \
+			$(rm) $$d.1; \
+		fi; \
+	done; \
+	touch doc;
+	
+	
+docclean: 
+	@echo "Cleaning up documentation"
+	@for d in $(DOC_SOURCES) dummy; do \
+		if [ "$$d" != "dummy" ]; then \
+			echo "working $$d"; \
+			bd=`basename $$d`; \
+			html="$$bd.html"; \
+			echo "removing $(OS)/$$html"; \
+			$(rm) $(OS)/$$html; \
+		fi; \
+	done
+	$(rm) doc
+	
+
+docinst: doc
+	@echo "Creating $(PREFIX_DOC)/$(PACKAGE) and installing documentation"
+	@if [ ! -d $(PREFIX_DOC)/$(PACKAGE) ]; then $(mkdir_p) $(PREFIX_DOC)/$(PACKAGE); fi; \
+	for f in $(DOC_SOURCES) dummy; do \
+		if [ "$$f" != "dummy" ]; then \
+			echo "working $$f"; \
+			bd=`basename $$f`; \
+			html="$$bd.html"; \
+			echo "Installing $(OS)/$$html to $(PREFIX_DOC)/$(PACKAGE)"; \
+			$(cp) $(OS)/$$html $(PREFIX_DOC)/$(PACKAGE); \
+		fi; \
+	done
+
+uploaddoc: uploaddocs	
+	
+uploaddocs: doc
+	@echo "Uploading documents to $(WEB_DOC_PLACE)"
+	@DOCS="";for f in $(DOC_SOURCES) dummy; do \
+		if [ "$$f" != "dummy" ]; then \
+			html=`echo $$f | sed -e 's/[.][^.]*$$//'`; \
+			html="$$html.html"; \
+			DOCS="$$DOCS $(OS)/$$html"; \
+			if [ "$$html" = "$(WEB_INDEX)" ]; then \
+				$(cp) $(OS)/$$html $(OS)/index.html; \
+				DOCS="$$DOCS $(OS)/index.html"; \
+			fi; \
+		fi; \
+	done; \
+	CSS=`ls | $(grep) \.css$$`; \
+	echo "$(scp) $$CSS $$DOCS $(WEB_DOC_PLACE)"; \
+	$(scp) $$DOCS $$CSS $(WEB_DOC_PLACE)
+	
+### standard clean
+
+stdclean: docclean
+	$(rm) -r $(OS)
+	$(rm) doc
+	
+config_clean:
+	$(rm) config/os.cfg
+	$(rm) -r config
+
+### dist
+
+distclean: clean config_clean
+	$(rm) -r .dist .deps *.tar.gz config.h
+
+dist: distclean
+	$(mkdir_p) $(PACKAGE)-$(VERSION)
+	$(tar) -c --exclude=CVS --exclude=$(PACKAGE)-$(VERSION) -f - . | ($(cd) $(PACKAGE)-$(VERSION); tar xf - )
+	$(tar) czf $(PACKAGE)-$(VERSION).tar.gz $(PACKAGE)-$(VERSION)
+	$(rm) -r $(PACKAGE)-$(VERSION)
+	
+### Configuring
+
+config: configure
+
+configure: 
+	@if [ ! -d config ]; then $(MAKE) do_config; else $(MAKE) config_clean; $(MAKE) do_config; fi
+
+### include Makefile.local
+
+include Makefile.local
+
+### include Makefile.conf
+
+include Makefile.conf
+
+CFLAGS+=$(CFG_CFLAGS)
+LDFLAGS+=$(CFG_LDFLAGS)
+LIBS+=$(CFG_LIBS)
+
+### Make config
+
+do_config: 
+	@echo "ok, done configuring"
+
+### installing
+
+bininst: 
+	@$(mkdir_p) $(PREFIX_BIN)
+	@for p in $(PROGRAMS) dummy; do \
+		if [ "$$p" != "dummy" ]; then \
+			p=`echo $$p | sed -e s%$(OS)/%%`; \
+			echo "installig $(OS)/$$p to $(PREFIX_BIN)/$$p"; \
+			$(cp) $(OS)/$$p $(PREFIX_BIN)/$$p; \
+		fi; \
+	done
+	
+libinst:
+	@$(mkdir_p) $(PREFIX_LIB)
+	@for p in $(LIBRARIES) dummy; do \
+		if [ "$$p" != "dummy" ]; then \
+			p=`echo $$p | sed -e s%$(OS)/%%`; \
+			echo "installig $(OS)/$$p to $(PREFIX_LIB)/$$p"; \
+			$(cp) $(OS)/$$p $(PREFIX_LIB)/$$p; \
+		fi; \
+	done
+
+incinst:
+	@$(mkdir_p) $(PREFIX_INC)
+	@for p in $(HEADERS) dummy; do \
+		if [ "$$p" != "dummy" ]; then \
+			p=`echo $$p | sed -e s%$(OS)/%%`; \
+			echo "installig $$p to $(PREFIX_INC)/$$p"; \
+			$(cp) $$p $(PREFIX_INC)/$$p; \
+		fi; \
+	done
+
+spodwiki:
+	@if [ "$(SPODWIKI)" = "" ]; then \
+		echo "SPODWIKI variable not set"; \
+		exit 2; \
+	fi
+	@rm -f ./spodwiki_conf.php ./insert_form.php ./spodwiki.php
+	@ln -s $(SPODWIKI)/spodwiki_conf.php .
+	@ln -s $(SPODWIKI)/insert_form.php .
+	@ln -s $(SPODWIKI)/spodwiki.php .
+	@echo "Putting documentation to SpodWiki"
+	@for d in $(DOC_SOURCES) $(OS); do \
+		if [ "$$d" != "$(OS)" ]; then \
+			bd=`basename $$d`; \
+			sed -e 's/^\[{$$//' -e 's/^}\]$$//' -e 's/@PACKAGE@/$(PACKAGE)/g' -e 's/@VERSION@/$(VERSION)/g' <$$d >spod_$$bd; \
+			$(PHP) ./insert_form.php spod_$$bd gentoc; \
+			$(rm) spod_$$bd; \
+		fi; \
+	done; \
+	touch doc;
+
+	
+

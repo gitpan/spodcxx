@@ -1,0 +1,358 @@
+=pod
+
+=head1 test
+
+=head2 jup
+
+sdlfasf
+
+a lot of text a lot of text a lot of text a lot of texta lot of text a lot of text
+a lot of text a lot of texta lot of text a lot of texta lot of text a lot of texta lot of text a lot of text
+a lot of text a lot of texta lot of text a lot of texta lot of text a lot of texta lot of text a lot of text
+a lot of text a lot of text
+a lot of text a lot of texta lot of text a lot of text
+a lot of text a lot of text
+
+a lot of text a lot of texta lot of text a lot of texta lot of text a lot of text
+a lot of text a lot of texta lot of text a lot of text
+a lot of text a lot of texta lot of text a lot of text
+
+
+
+sdfasf
+fasfas
+
+=over 1
+
+=item *
+
+test test
+
+=item *
+
+sdfds dsfsf skjfhaksljfh akslfh a
+sfkjhasf kashfl laskfh salkf alskflas flask a lot of text a lot of texta lot of text a lot of texta lot of text a lot of text
+a lot of text a lot of texta lot of text a lot of texta lot of text a lot of texta lot of text a lot of text
+a lot of text a lot of texta lot of text a lot of texta lot of text a lot of text
+
+sakdfhaskfh sal
+asdfkjhas 
+
+=item *
+
+sdfds dsfsf skjfhaksljfh akslfh a
+sfkjhasf kashfl laskfh salkf alskflas flask a lot of text a lot of texta lot of text a lot of texta lot of text a lot of text
+
+=item *
+
+sdfds dsfsf skjfhaksljfh akslfh a
+sfkjhasf kashfl laskfh salkf alskflas flask a lot of text a lot of texta lot of text a lot of texta lot of text a lot of text
+
+
+=back
+
+=over 1
+
+=item 1
+
+abc abcd
+
+=item 1 
+
+abababc
+
+=item 1 
+
+abababc
+
+sdfds dsfsf skjfhaksljfh akslfh a
+sfkjhasf kashfl laskfh salkf alskflas flask a lot of text a lot of texta lot of text a lot of texta lot of text a lot of text
+
+=item 1 
+
+abababc
+
+sdfds dsfsf skjfhaksljfh akslfh a
+sfkjhasf kashfl laskfh salkf alskflas flask a lot of text a lot of texta lot of text a lot of texta lot of text a lot of text
+
+=back
+
+=over 1
+
+=item text
+
+kjadhfksaf
+
+=item text1
+
+sdhfas
+
+=back
+
+
+ohgaksjhfaksjhfaosyfashfask hf kasfhaslhfushfkjsbfkadsfhasfyqweurfhqwjkfhaskl
+safkahsfklahsdfqwuhyefihasdfh9p2faksdvbskadbfvasfgp9qw78faksf ksfsa kfgp9qwfg 
+fhasg foia gpwrfg qfhg 793yqf if kjfg p97qfryifugwaihfgaspd9f7yaw kfjhfisfgawp97 yf
+safa ipasafg aifgapiwtfwapughdkhsfgp97qyre ffgifgpw9q fiwg fwifgipf sak fgpiasf
+fsad flsagf2g fhwfg sdft gwif gsajfgpq97wfa wfhg aspf7tq fpiyqgf wpifg 92e7yf
+sflksadifgs afwg fg salifg pof2qgkfh gaiw7efawifgalg awitf iawgt fasgf liaygt4 q7iy
+klfg asifg p2rg liygfslit 7q24gfiag sfkhgfp7	9q2giugfaw;kfga slhdf gpqw97tawrg
+
+=image Hallo,naam,test.jpg,jpeg,right
+
+slhfgsafgwapgf wljafg piryfg wifgwifg qwi gslhvgasfgyg ffg awiyfg
+waldhgfsad y fgp2q8 gfahsfgawiyfg pwqgfsahgf pwia fgwhfgaslhfas
+sf hafgwqifgawfgaslfgawpo8g fawufgasdyfgqew gjlhafg iyqwfg jhs gal
+awgfaiwg ipfgw i fshf gspiydfg awhf gasfgwapfiygwafhasdilfgsayfgsa
+s k jhfsak fhwqepuhfsakjfhasp yfhkawehfpayh4iufh asiufh pawyhfawuhksjad
+
+szknjbfgsaiu p97qythkl ghp97eyghgkldhg lksadgh973qy iuhgsh gskldhgklsdh gal k
+sf gkhsjfgsof tgw8qtfrwjhgf aslfdgw7yf wafgasidfygwa78yf asdk hfaskjf gasjf
+sa fgasjfgrgtf q2gfrawjgfas jlkdfg  87	t yruygwfjwkfgakjsfg as fytagf 
+sadfk asfosag fo82tgfuyagsfag fp724yrfhasdjkfhasudify928fhkajsdhfaslkfhas
+sflhsagfalsgf p 7a9wyr flwagf lisag piawg fywag aywg fyalsg faljsgfaw8 tfashh
+sdkf asjfgsgf ywag fsaygfsahfg pfrtgqy fgsdgfw apyfg jhrwg fp7892g fjg sajl
+
+=syn cxx,4
+
+ std::string spod_html::escape(const std::string & block)
+ {
+ int i,N,p;
+ std::string NB,esc;
+	for(p=i=0,N=block.size();i<N;i++) {
+		switch (block[i]) {
+			case '<': esc="&lt;";
+			break;
+		    case '>': esc="&gt;";
+		    break;
+		    case '&': esc="&amp;";
+		    break;
+		}
+		
+		if (esc!="") {
+			NB+=block.substr(p,i-p)+esc;
+			esc="";
+			p=i+1;
+		}
+	}
+	if (p<i) {
+		NB+=block.substr(p);
+	}
+	
+	b=false;
+ return NB;
+ }
+
+=over 1
+
+=item *
+
+sdalkjfhashkjfh
+sdfkjhasfk 
+
+=item *
+
+sdlfhasdooiuyhoiasf
+
+=item *
+
+sdfsdfs
+
+=back
+
+=back
+
+=syn scm,4
+
+ ;*taste bigloo
+ (module spod2html
+        (import spod)
+        (main main))
+ ;*taste gauche
+ ;(use spod)
+ ;*taste end
+
+ (define (main the-args)
+
+    (define (pversion)
+        (begin
+            (print (spod:version))
+            0))
+
+    (define (plicense)
+        (begin
+            (print (spod:license))
+            0))
+
+    (define (wcss cssfile)
+        (let ((fh (open-output-file cssfile)))
+            (display (spod:standard-CSS) fh)
+            (close-output-port fh)))
+
+    (define (usage)
+        (let ((cmd (car the-args)))
+            (print "usage: " #\newline
+                   cmd " <options> [<file in> [<file out>]]"
+                   #\newline
+                   #\newline
+                   "  options:" #\newline
+                   "      --version                  - displays the version number" #\newline
+                   "      --license                  - displays license message" #\newline
+                   "      --stylesheet=<sheet.css>   - uses <sheet.css> link for stylesheet" #\newline
+                   "      --comment[=<comment>]      - uses <comment> as comment prefixer" #\newline
+                   "      --pod                      - uses old style pod, no comment prefixed" #\newline
+                   "                                   same as '--comment' or '--comment='" #\newline
+                   "      --toc=<toc header>         - Use toc-header as header for the table of " #\newline
+                   "                                   contents (default=Contents)." #\newline
+                   "      --notoc                    - Do not write out a table of contents" #\newline
+                   "      --write-css=<file.css>     - Write out the standard css for spod" #\newline
+                   #\newline
+                   "  examples:" #\newline
+                   "    " cmd " --comment spodspec.pod spodspec.html" #\newline
+                   "    " cmd " --pod spodspec.pod spodspec.html" #\newline
+                   "    " cmd " --comment=// source.cpp" #\newline
+                   "    " cmd " spod.scm" #\newline)
+            1))
+
+    (let ((args (cdr the-args))
+          (comment ";")
+          (stylesheet "")
+          (in-file "")
+          (out-file "")
+          (version #f)
+          (license #f)
+          (writecss #f)
+          (error #f)
+          (contents "Contents"))
+
+        (define (arg-handler key val)
+            (cond
+                ((string-ci=? key "--comment") (set! comment val))
+                ((string-ci=? key "--pod")     (set! comment ""))
+                ((string-ci=? key "--stylesheet") (set! stylesheet val))
+                ((string-ci=? key "--version") (set! version #t))
+                ((string-ci=? key "--license") (set! license #t))
+                ((string-ci=? key "--toc") (set! contents val))
+                ((string-ci=? key "--notoc") (set! contents #f))
+                ((string-ci=? key "--write-css") (if (string=? val "")
+                                                    (set! error "--write-css needs a filename (forgotten '='?)")
+                                                    (set! writecss val)))
+                ((string=? key "")
+                    (if (= (string-length in-file) 0)
+                        (set! in-file val)
+                        (if (= (string-length out-file) 0)
+                            (set! out-file val)
+                            (set! error "To many files specified"))))
+                (else (set! error (string-append "Unknown option '" key "'")))))
+
+        (begin
+            (spod:get-args arg-handler args)
+
+            (if (not (eq? error #f))
+                (print #\newline "ERROR: " error #\newline))
+
+            (cond
+                ((not (eq? error #f)) (usage))
+                ((eq? version #t) (pversion))
+                ((eq? license #t) (plicense))
+                ((not (eq? writecss #f)) (wcss writecss))
+                (else
+                    (if (string=? in-file "")
+                        (usage)
+                        (let ((POD (spod:parse in-file comment)))
+                            (if (string=? out-file "")
+                                (set! out-file (string-append in-file ".html")))
+                            (if (eq? POD #f)
+                                (begin
+                                    (print "ERROR: Cannot read '" in-file "'")
+                                    2)
+                                (begin
+                                    (spod:to-html POD (list "file" out-file)
+                                                      (list "stylesheet" stylesheet)
+                                                      (list "contents" contents))
+                                    0)))))))))
+
+ (define-syntax %oo-mset
+   (syntax-rules ()
+     ((%oo-mset ((f a ...) fdef) val) #t)
+     ((%oo-mset ((f a . b) fdef) val) #t)
+     ((%oo-mset ((f . a) fdef) val) #t)
+     ((%oo-mset (m1 v1) val) (set! m1 val))))
+ 	
+ (letrec ((a 5)
+ 		  (b 10)
+ 		  (c (* a b)))
+ 	(define (q r)
+ 		(+ c r))
+ 	(/ (* (q b) b) a))
+ 	
+ (define (q a b)
+ 	(list (number->string a) (symbol->string b)))
+ 	
+ (set-cdr! (q 2 3) (list 3 4))
+
+=head3 kop
+
+=syn txt,8
+
+asdffsd
+
+  Pre pre
+  pre pre
+
+=head1 tan
+
+=cut
+
+This text should be cut
+
+=pod
+
+These are L<A number of links|http://www.elemental-programming.org>, L<an other link to the image|/naam> 
+and L<an other link|ep.html>, L<or even in the document|ep.html/Downloading>.
+
+
+ pre an other
+ pre an oter
+ 
+ pre pre pre
+ jes.
+
+=head2 Table support
+
+=table 70 30,Caption of this table,,1
+
+=hcell B<Name>
+
+=hline
+
+=hcell B<Age>
+
+=hline
+
+=cell Hans Oesterholt
+
+=rcell 35
+
+=cell Ulysses Oesterholt
+
+=rcell 33
+
+=cell 
+
+=head4 HI!
+
+=rcell
+
+Foot this text hmm?
+
+=cell Another cell
+
+=row
+
+=cell And again some text
+
+=ccell Centered
+
+=table
+

@@ -1,0 +1,44 @@
+# UNIFY $Id: Makefile.unify,v 1.12 2004/09/03 14:24:57 cvs Exp $
+
+
+include config/config.inn
+
+DIST_CFLAGS=$(shell config/pconf_unify$(EXE) --cflags $(CFG_CFLAGS))
+DIST_LDFLAGS=$(shell config/pconf_unify$(EXE) --ldflags $(CFG_LDFLAGS))
+DIST_LIBS=$(shell config/pconf_unify$(EXE) --libs $(CFG_LIBS))
+
+all: config/pconf_unify$(EXE)
+	echo "pod2html=$(pod2html)"	>config/config.in
+	echo "pod2htmlout=$(pod2htmlout)" >>config/config.in
+	echo "WEB_DOC_PLACE=$(WEB_DOC_PLACE)" >>config/config.in
+	echo "WEB_INDEX=$(WEB_INDEX)" >>config/config.in
+	echo "CFG_CFLAGS=$(DIST_CFLAGS)" >>config/config.in
+	echo "CFG_LDFLAGS=$(DIST_LDFLAGS)" >>config/config.in
+	echo "CFG_LIBS=$(DIST_LIBS)" >>config/config.in
+	$(cat) config/config.inn | $(grep) ^HAVE_ >>config/config.in; exit 0
+	$(cat) config/config.inn | $(grep) _LIB= >>config/config.in; exit 0
+	$(cat) config/config.inn | $(grep) _LIBS= | $(grep) -v CFG_LIBS >>config/config.in; exit 0
+	$(cat) config/config.inn | $(grep) _CFLAGS= | $(grep) -v CFG_CFLAGS  >>config/config.in; exit 0
+	$(cat) config/config.inn | $(grep) _LDFLAGS= | $(grep) -v CFG_LDFLAGS >>config/config.in; exit 0
+	$(cat) config/config.inn | $(grep) ^PREFIX= >>config/config.in; exit 0
+	echo "#ifndef __CONFIG__H__"  >config.h
+	echo "#define __CONFIG__H__"  >>config.h
+	$(cat) $(OS_CONFIG) >>config.h
+	$(cat) config/config.inn | $(grep) ^HAVE_ | $(sed) -e 's/:=/=/' -e 's/=/ /' -e 's/^HAVE/#define HAVE/' >>config.h; exit 0
+	$(cat) config/config.inn | $(grep) _LIB= | $(sed) -e 's/:=/=/' -e 's/=/ "/' -e 's/$$/"/' -e 's/^/#define /' >>config.h; exit 0
+	echo "#define BIN_EXT \"$(EXE)\"" >>config.h
+	echo "#define SHL_EXT \"$(SHL)\"" >>config.h
+	echo "#define LIB_EXT \"$(LIB)\"" >>config.h
+	echo "#define OBJ_EXT \"$(OBJ)\"" >>config.h
+	echo "#define VERSION \"$(VERSION)\"" >>config.h
+	echo "#define PACKAGE \"$(PACKAGE)\"" >>config.h
+	if [ -r config.h.in ]; then $(cat) config.h.in >>config.h; fi
+	echo "#endif" >>config.h
+	@echo "Configured CFLAGS, LDFLAGS and LIBS unified"
+	
+config/pconf_unify$(EXE): config/pconf_unify$(OBJ)
+	$(LD) -o config/pconf_unify$(EXE) config/pconf_unify$(OBJ)
+	
+config/pconf_unify$(OBJ): pconf_unify.c
+	$(CC) -c pconf_unify.c -o config/pconf_unify$(OBJ)
+	

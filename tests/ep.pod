@@ -1,0 +1,130 @@
+=head1 Name 
+
+Elementals - The site to elemental programming.
+
+=head1 About elemental programming
+
+Elemental programming is programming with consciousness about that one is creating.
+Many computer scientists do not think about writing a program as an act of creating something. 
+They look at artists this way, but not at themselves. This is why 
+elemental programming is interesting. It is a way of programming that takes
+into account the act of creation.
+
+=head2 WIKI
+
+There's a WIKI about elemental programming, the L<Elemental Programming WIKI|http://www.elemental-programming.org/wiki/wiki.php>.
+
+=head1 The practice of elemental programming
+
+If you are going to practice elemental programming, the most important thing to
+realize is that you are actually writing a small creature and that you have
+a responsability to it. This small creature is similar to an 
+elemental creature.
+A lot of programmers may have experienced 
+it is to get their own code maintained by others. Large projects 
+often only rely on a few people. A lot 
+of programming acts get abandoned. And one could say, a lot of elemental
+creatures are thrown away or abandoned without consciousness about it. 
+
+If you are going to write an elemental you could do the following things:
+
+=over 1
+
+=item *
+
+Don't make it into a moloch. 
+Give it a well defined task (one could compare this to
+component based development).
+
+=item *
+
+Visualize it, make a drawing of it, or let it visualize itself.
+
+=item *
+
+Let it formally test itself, i.e. write unit tests for it.
+
+=item *
+
+Make it's code as beautiful as you can.
+
+=item *
+
+Love creating it, working on it, because it's part yourself. You are its creator.
+
+=item * 
+
+Be aware of your responsibility to it. You are it's creator.
+
+=back
+
+=head1 Releases
+
+=head2 MINGW Development Environment
+
+We did release a I<MinGW development environment addition>, 
+that contains following packages:
+
+=over 1
+
+- wxWindows 2.4.2 -- Dynamic Libraries E<lb>
+- wxWindows 2.4.2 Contrib -- Static libraries E<lb>
+- PostgreSQL 7.2.1 -- native windows (from postgresql_beta4.zip) E<lb>
+- SQLite 2.8.13 -- an embedded SQL library E<lb>
+- Perl 5.8.3 -- mingw compile (dmake). E<lb>
+- wxPerl 0.18 -- mingw compile. E<lb>
+- DBI/DBD::Pg. E<lb>
+
+=back
+
+=head2 Scheme POD processor
+
+The Scheme Plain Old Documentation program has been used to create this
+page from plain .pod format. Refer to L<CPAN|http://www.cpan.org> for more
+information on POD. You can also look L<here|spoduser>
+for user information on POD and L<here|spodspec> for
+the POD spec used by SPOD. SPOD has enhanced the POD spec by a single element 
+C<EE<lt>lbE<gt>>.
+
+=head2 PostgreSQL as an NT service
+
+See documentation L<here|psql_service>. 
+
+=head1 C++ libraries. 
+
+=head2 Unit Testing
+
+L<libutest|utest> is a C++ library to facilitate Unit testing.
+
+=head2 Critical Sections
+
+L<libcritsec|hcritsec> is a C++ library that implements Critical Sections.
+
+=head2 STL related
+
+=over 1
+
+- L<std::rvector|rvector> - An STL derivative that implements dynamic vectors. E<lb>
+- L<harray|harray> - An templated array implementation (derives from std::rvector). E<lb>
+- L<hstack|hstack> - A templated stack implementation (derives from std::stack). E<lb>
+
+=back
+
+=head1 Downloading
+
+Latest releases of all packages can be found  L<here|http://sourceforge.net/project/showfiles.php?group_id=89865>.
+
+=head1 Author
+
+Hans Oesterholt-Dijkema <hdnews -at- gawab -dot- com>.
+
+=head1 Copyright and License
+
+(c) Hans Oesterholt-Dijkema, All packages distributed under
+L<"Elemental Programming Artistic License"|ep_license>, which is a modified
+version of "The Artistic License".
+
+=head1 Version
+
+$Id: ep.pod,v 1.1 2004/09/06 12:02:36 cvs Exp $
+

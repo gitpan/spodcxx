@@ -1,0 +1,62 @@
+=pod
+
+=head1 HI
+
+sdkjfhaskf
+sdfkhasfksahfa;s
+fkdha
+
+=wikiwikiwiki
+
+==HMM een header
+
+Ja *This is bold* and /this is italics/ WikiWord, jeah
+hmmsdlkjhfakljhfakdlfs [Lets link this] .
+
+OK, WE still need to _parse_ the end [http://www.google.com google here!] of a line the right way.
+Yeah, but http://www.google.nl is a good SearchMachine, although <= all other
+machines. 
+
+However, let's see if [http://www.google.com] works as a link.
+
+sljfdhasjkhfsaldkf
+dfkhaslkfa
+
+Ja, #En nu kijken of we verder komen#. Inderdaad.
+
+Let's see what we !*must* do with a word followed by a colon:
+ Now, for some *verbatim* text.
+ This text should not be parsed.
+And the next line should be spaced.
+dsfkhask [test.jpg] HMM.
+
+Ok, a WikiWikiWikiWord can be escaped; !WikiWikiWikiWord; as you see.
+
+* *List one*
+* Linst one
+
+0 List two
+0 List two
+00 Ja Ja
+00 Nene
+0 OK
+
+----
+
+Yes,yes, horizontal line.
+
+=wikiwikiwiki
+
+=over 1
+
+=item *
+
+hmm
+
+=item *
+
+sdfkjhfdks
+
+=back
+
+

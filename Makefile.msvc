@@ -1,0 +1,19 @@
+### MSVC++
+
+MSVCFLAGS=-I. -EHsc
+MV?=cmd /C move
+
+msvc: spod2html.cxx spod_parser.cxx spod_html.cxx hoptions.cxx spod_parser.h spod_html.h
+	-mkdir -p WIN32
+	cl -c $(MSVCFLAGS) spod_parser.cxx
+	$(MV) spod_parser.obj WIN32
+	cl -c $(MSVCFLAGS) spod_html.cxx 
+	$(MV) spod_html.obj WIN32
+	cl -c $(MSVCFLAGS) spod2html.cxx 
+	$(MV) spod2html.obj WIN32
+	cl -c $(MSVCFLAGS) hoptions.cxx 
+	$(MV) hoptions.obj WIN32
+	cl -o spod2html.exe  WIN32\\*.obj 
+	$(MV) spod2html.exe WIN32
+
+
