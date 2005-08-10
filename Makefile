@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.9 2005/08/02 09:17:42 cvs Exp $
+# $Id: Makefile,v 1.11 2005/08/10 09:41:06 cvs Exp $
 #
 # GNU Makefile - psql_service
 # For MinGW + MSYS
@@ -7,7 +7,7 @@
 #
 
 PACKAGE=spodcxx
-VERSION=0.21
+VERSION=0.22
 
 ### Define variables here!
 

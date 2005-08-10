@@ -903,7 +903,7 @@ std::string spod_parser::parse_wikiwikiwiki_line(std::string & line,int & list_l
     new_line="=head2 ";
     line=line.substr(2);
   }
-  else if (L>=1 && line.substr(0,2)=="=") {
+  else if (L>=1 && line.substr(0,1)=="=") {
     new_line="=head1 ";
     line=line.substr(1);
   }
